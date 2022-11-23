@@ -1,6 +1,6 @@
 package com.jaa.thread02;
 
-import com.utils.ThreadUtil;
+import com.jaa.utils.ThreadUtil;
 
 /**
  * @Author Jaa

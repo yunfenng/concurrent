@@ -1,6 +1,6 @@
 package com.jaa.thread03;
 
-import com.utils.Print;
+import com.jaa.utils.Print;
 
 /**
  * @Author: Jaa
@@ -20,6 +20,7 @@ public class PriorityDemo {
 
         public long opportunities = 0;
 
+        @Override
         public void run() {
             for (int i = 0; ; i++) {
                 opportunities++;
@@ -27,7 +28,7 @@ public class PriorityDemo {
         }
     }
 
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         PrioritySetThread[] threads = new PrioritySetThread[10];
         for (int i = 0; i < threads.length; i++) {
             threads[i] = new PrioritySetThread();

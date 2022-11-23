@@ -1,14 +1,19 @@
 package com.jaa.thread03;
 
-import com.utils.Print;
 
-import static com.utils.ThreadUtil.sleepSeconds;
+import com.jaa.utils.Print;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.logging.Level;
+
+import static com.jaa.utils.ThreadUtil.sleepSeconds;
 
 /**
  * @Author: Jaa
  * @Date: 2022/11/22 22:58
  * @Description:
  */
+@Slf4j
 public class InterruptDemo {
     public static final int SLEEP_GAP = 5000;//睡眠时长
     public static final int MAX_TURN = 50;//睡眠次数
@@ -21,12 +26,15 @@ public class InterruptDemo {
             threadSeqNumber++;
         }
 
+        @Override
         public void run() {
             try {
                 Print.tco(getName() + " 进入睡眠.");
                 // 线程睡眠一会
                 Thread.sleep(SLEEP_GAP);
             } catch (InterruptedException e) {
+                log.info("Interrupted", e);
+                Thread.currentThread().interrupt();
                 e.printStackTrace();
                 Print.tco(getName() + " 发生被异常打断.");
                 return;
@@ -36,7 +44,7 @@ public class InterruptDemo {
 
     }
 
-    public static void main(String args[]) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
         Thread thread1 = new SleepThread();
         thread1.start();
         Thread thread2 = new SleepThread();

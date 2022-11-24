@@ -8,6 +8,7 @@ import java.util.Scanner;
  * @Description:
  */
 public class Print {
+
     /**
      * 正式输出前，输出线程名
      * t-thread，c-content， o-output
@@ -16,14 +17,10 @@ public class Print {
      */
     public static void tco(Object s) {
         String cft = "[" + Thread.currentThread().getName() + "]" + "：" + s;
-
-        //提交线程池进行异步输出，使得输出过程不影响当前线程的执行
-        //异步输出的好处：不会造成输出乱序，也不会造成当前线程阻塞
-        ThreadUtil.seqExecute(() ->
-        {
-
+        // 提交线程池进行异步输出，使得输出过程不影响当前线程的执行
+        // 异步输出的好处：不会造成输出乱序，也不会造成当前线程阻塞
+        ThreadUtil.seqExecute(() -> {
             System.out.println(cft);
-
         });
     }
 
@@ -35,12 +32,9 @@ public class Print {
      */
     public static void synTco(Object s) {
         String cft = "[" + Thread.currentThread().getName() + "]" + "：" + s;
-
         //提交线程池进行异步输出，使得输出过程不影响当前线程的执行
         //异步输出的好处：不会造成输出乱序，也不会造成当前线程阻塞
-
         System.out.println(cft);
-
     }
 
     /**
@@ -59,13 +53,9 @@ public class Print {
      */
     public static void fo(Object s) {
         String cft = "[" + ReflectionUtil.getNakeCallClassMethod() + "]";
-
         //提交线程池进行独立输出，使得输出不影响当前线程的执行
-        ThreadUtil.seqExecute(() ->
-        {
-
+        ThreadUtil.seqExecute(() -> {
             System.out.println(cft + "：" + s);
-
         });
     }
 
@@ -77,8 +67,7 @@ public class Print {
     synchronized public static void cfo(Object s) {
         String cft = "[" + ReflectionUtil.getNakeCallClassMethod() + "]";
         //提交线程池进行独立输出，使得输出不影响当前线程的执行
-        ThreadUtil.seqExecute(() ->
-        {
+        ThreadUtil.seqExecute(() -> {
             System.out.println(cft + "：" + s);
         });
     }
@@ -91,15 +80,10 @@ public class Print {
     public static void tcfo(Object s) {
         String cft = "[" + Thread.currentThread().getName() + "|" + ReflectionUtil.getNakeCallClassMethod() + "]";
         System.out.println(cft + "：" + s);
-
-//        //提交线程池进行独立输出，使得输出不影响当前线程的执行
-//        ThreadUtil.seqExecute(() ->
-//        {
-//
-//            System.out.println(cft + "：" + s);
-//
-//        });
-
+        // 提交线程池进行独立输出，使得输出不影响当前线程的执行
+        // ThreadUtil.seqExecute(() -> {
+        //     System.out.println(cft + "：" + s);
+        // });
     }
 
 

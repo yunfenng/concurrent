@@ -4,8 +4,6 @@ package com.jaa.thread03;
 import com.jaa.utils.Print;
 import lombok.extern.slf4j.Slf4j;
 
-import java.util.logging.Level;
-
 import static com.jaa.utils.ThreadUtil.sleepSeconds;
 
 /**
